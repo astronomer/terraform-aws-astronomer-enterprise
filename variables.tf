@@ -93,6 +93,6 @@ variable "astronomer_version" {
 }
 
 variable "cluster_version" {
-  default = "1.12"
+  default = null
   type    = string
 }
