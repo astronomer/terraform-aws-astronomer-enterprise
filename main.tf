@@ -15,6 +15,7 @@ module "aws" {
   max_cluster_size              = var.max_cluster_size
   ten_dot_what_cidr             = var.ten_dot_what_cidr
   cluster_type                  = var.cluster_type
+  cluster_version               = var.cluster_version
   # It makes the installation easier to leave
   # this public, then just flip it off after
   # everything is deployed.
