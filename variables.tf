@@ -30,6 +30,12 @@ variable "private_subnets" {
   type        = list(string)
 }
 
+variable "public_subnets" {
+  default     = []
+  type        = "list"
+  description = "This variable does nothing unless vpc_id is also set. Specify the subnet ID(s)."
+}
+
 variable "enable_windows_box" {
   default     = false
   description = "Launch a Windows instance with Firefox installed in a public subnet?"

@@ -7,6 +7,7 @@ module "aws" {
   route53_domain                = var.route53_domain
   vpc_id                        = var.vpc_id
   private_subnets               = var.private_subnets
+  public_subnets                = var.public_subnets
   enable_bastion                = var.enable_bastion
   enable_windows_box            = var.enable_windows_box
   tags                          = var.tags
