@@ -119,3 +119,13 @@ variable "lets_encrypt" {
   default = true
   type    = bool
 }
+
+variable "db_instance_type" {
+  default = "db.r4.large"
+  type    = string
+}
+
+variable "worker_instance_type" {
+  default = "m5.xlarge"
+  type    = string
+}

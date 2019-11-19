@@ -16,6 +16,8 @@ module "aws" {
   ten_dot_what_cidr             = var.ten_dot_what_cidr
   cluster_type                  = var.cluster_type
   cluster_version               = var.cluster_version
+  worker_instance_type          = var.worker_instance_type
+  db_instance_type              = var.db_instance_type
   # It makes the installation easier to leave
   # this public, then just flip it off after
   # everything is deployed.
