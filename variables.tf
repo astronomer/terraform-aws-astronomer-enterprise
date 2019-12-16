@@ -38,7 +38,7 @@ variable "private_subnets" {
 
 variable "bastion_subnet" {
   default     = ""
-  description = ""
+  description = "Public subnet ID for use with bastion host when enable_bastion variable is true."
   type        = string
 }
 
@@ -50,7 +50,7 @@ variable "enable_windows_box" {
 
 variable "enable_bastion" {
   default     = false
-  description = "Launch a bastion in a public subnet? For this to work, you must include 1 subnet id in the public_subets variable"
+  description = "Launch a bastion in a public subnet. For this to work, you must include 1 subnet id in the bastion_subets variable"
   type        = bool
 }
 
