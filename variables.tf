@@ -50,7 +50,7 @@ variable "enable_windows_box" {
 
 variable "enable_bastion" {
   default     = false
-  description = "Launch a bastion in a public subnet. For this to work, you must include 1 subnet id in the bastion_subets variable"
+  description = "Launch a bastion in a public subnet. For this to work with bring-your-own VPC configuration, you must include a public subnet id in the bastion_subnets variable. This should be in the same VPC as vpc_id and the provided private subnets."
   type        = bool
 }
 
