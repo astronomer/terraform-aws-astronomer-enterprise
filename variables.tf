@@ -36,6 +36,12 @@ variable "private_subnets" {
   type        = list(string)
 }
 
+variable "bastion_subnet" {
+  default     = ""
+  description = ""
+  type        = string
+}
+
 variable "enable_windows_box" {
   default     = false
   description = "Launch a Windows instance with Firefox installed in a public subnet?"
