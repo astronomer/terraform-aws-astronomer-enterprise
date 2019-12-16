@@ -38,7 +38,7 @@ variable "private_subnets" {
 
 variable "bastion_subnet" {
   default     = ""
-  description = "Public subnet ID for use with bastion host when enable_bastion variable is true."
+  description = "Public subnet ID for use with bastion host when enable_bastion variable is true and using bring-your-own VPC configuration (vpc_id and private_subnets provided by user)."
   type        = string
 }
 
