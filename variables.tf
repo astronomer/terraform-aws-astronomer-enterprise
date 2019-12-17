@@ -36,6 +36,12 @@ variable "private_subnets" {
   type        = list(string)
 }
 
+variable "db_subnets" {
+  default     = []
+  type        = "list"
+  description = "This variable does nothing unless vpc_id is also set. Specify the subnet IDs in which the DB will be deployed. If not provided, it will fall back to private_subnets."
+}
+
 variable "enable_windows_box" {
   default     = false
   description = "Launch a Windows instance with Firefox installed in a public subnet?"
@@ -128,4 +134,10 @@ variable "db_instance_type" {
 variable "worker_instance_type" {
   default = "m5.xlarge"
   type    = string
+}
+
+variable "db_replica_count" {
+  description = "How many replicas for the database"
+  default     = 1
+  type        = number
 }
