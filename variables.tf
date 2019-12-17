@@ -36,6 +36,11 @@ variable "private_subnets" {
   type        = list(string)
 }
 
+variable "db_subnets" {
+  default     = []
+  type        = list
+  description = "This variable does nothing unless vpc_id is also set. Specify the subnet IDs in which the DB will be deployed. If not provided, it will fall back to private_subnets."
+
 variable "bastion_subnet" {
   default     = ""
   description = "Public subnet ID for use with bastion host when enable_bastion variable is true and using bring-your-own VPC configuration (vpc_id and private_subnets provided by user)."
