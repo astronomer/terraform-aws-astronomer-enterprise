@@ -42,6 +42,12 @@ variable "db_subnets" {
   description = "This variable does nothing unless vpc_id is also set. Specify the subnet IDs in which the DB will be deployed. If not provided, it will fall back to private_subnets."
 }
 
+variable "bastion_subnet" {
+  default     = ""
+  description = "Public subnet ID for use with bastion host when enable_bastion variable is true and using bring-your-own VPC configuration (vpc_id and private_subnets provided by user)."
+  type        = string
+}
+
 variable "enable_windows_box" {
   default     = false
   description = "Launch a Windows instance with Firefox installed in a public subnet?"
@@ -50,7 +56,7 @@ variable "enable_windows_box" {
 
 variable "enable_bastion" {
   default     = false
-  description = "Launch a bastion in a public subnet? For this to work, you must include 1 subnet id in the public_subets variable"
+  description = "Launch a bastion in a public subnet. For this to work with bring-your-own VPC configuration, you must include a public subnet id in the bastion_subnets variable. This should be in the same VPC as vpc_id and the provided private subnets."
   type        = bool
 }
 
