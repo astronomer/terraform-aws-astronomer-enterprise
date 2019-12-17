@@ -8,6 +8,7 @@ module "aws" {
   vpc_id                        = var.vpc_id
   private_subnets               = var.private_subnets
   public_subnets                = [var.bastion_subnet]
+  db_subnets                    = var.db_subnets
   enable_bastion                = var.enable_bastion
   enable_windows_box            = var.enable_windows_box
   tags                          = var.tags
