@@ -38,7 +38,7 @@ variable "private_subnets" {
 
 variable "db_subnets" {
   default     = []
-  type        = "list"
+  type        = list
   description = "This variable does nothing unless vpc_id is also set. Specify the subnet IDs in which the DB will be deployed. If not provided, it will fall back to private_subnets."
 }
 
