@@ -7,7 +7,7 @@ module "aws" {
   route53_domain                = var.route53_domain
   vpc_id                        = var.vpc_id
   private_subnets               = var.private_subnets
-  db_subnets = var.db_subnets
+  db_subnets                    = var.db_subnets
   enable_bastion                = var.enable_bastion
   enable_windows_box            = var.enable_windows_box
   tags                          = var.tags
@@ -19,7 +19,7 @@ module "aws" {
   cluster_version               = var.cluster_version
   worker_instance_type          = var.worker_instance_type
   db_instance_type              = var.db_instance_type
-  db_replica_count = var.db_replica_count
+  db_replica_count              = var.db_replica_count
   # It makes the installation easier to leave
   # this public, then just flip it off after
   # everything is deployed.
