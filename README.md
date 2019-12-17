@@ -30,3 +30,31 @@ If using private mangement API, you must have some way to access the API. There 
 - optional private management API
 
 ![Astronomer Private Cloud Architecture](images/Astronomer_AWS_Architecture_EE.svg)
+
+# Configurations
+
+## Certificate
+By default, a certificate will be generated from LetsEncrypt. Certificates can be used from ther sources if they can be exported into plain text PEM format:
+```
+  lets_encrypt          = false
+  tls_cert              = <<EOF
+-----BEGIN CERTIFICATE-----
+-----END CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+-----END CERTIFICATE-----
+EOF
+  tls_key               = <<EOF
+-----BEGIN PRIVATE KEY-----
+-----END PRIVATE KEY-----
+EOF
+}
+}
+```
+## Multiple AZ Database
+To deploy the Aurora database to multiple availability zones, additional replicas and subnets in different AZs need to be specified:
+
+```
+  db_replica_count      = 2
+  db_subnets            = []
+```
+**Note:** `db_subnets` only need to be specified if deploying to pre-existing subnets. Otherwise, all subnets will be created fresh and the `db_subnets` parameter can be excluded from the enterprise module. 
