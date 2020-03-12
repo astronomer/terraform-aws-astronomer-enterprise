@@ -49,6 +49,7 @@ module "system_components" {
   enable_aws_cluster_autoscaler = true
   cluster_name                  = module.aws.cluster_name
   aws_region                    = data.aws_region.current.name
+  tiller_version                = "2.16.1"
 }
 
 module "astronomer" {
