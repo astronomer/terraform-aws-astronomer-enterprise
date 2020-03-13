@@ -56,7 +56,7 @@ module "astronomer" {
   dependencies = [module.system_components.depended_on, module.aws.depended_on]
 
   source  = "astronomer/astronomer/kubernetes"
-  version = "1.1.59"
+  version = "1.1.88"
   # source               = "../terraform-kubernetes-astronomer"
 
   astronomer_version   = var.astronomer_version
