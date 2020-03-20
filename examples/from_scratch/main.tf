@@ -44,6 +44,7 @@ module "astronomer_aws_from_scratch" {
     # For example, astro.your-route53-domain.com
     baseDomain: ${var.deployment_id}.${var.route53_domain}
     tlsSecret: astronomer-tls
+    postgresqlEnabled: false
   nginx:
     privateLoadBalancer: false
   astronomer:
