@@ -8,6 +8,11 @@ resource "local_file" "kubeconfig" {
   filename   = "${path.root}/kubeconfig-${var.deployment_id}"
 }
 
+resource "local_file" "astronomer_helm_values" {
+  content    = var.astronomer_helm_values
+  filename   = "${path.root}/${var.deployment_id}-config.yaml"
+}
+
 provider "kubernetes" {
   host                   = module.aws.kube_endpoint
   cluster_ca_certificate = module.aws.kube_ca_certificate
