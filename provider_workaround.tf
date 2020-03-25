@@ -9,8 +9,8 @@ resource "local_file" "kubeconfig" {
 }
 
 resource "local_file" "astronomer_helm_values" {
-  content    = var.astronomer_helm_values
-  filename   = "${path.root}/${var.deployment_id}-config.yaml"
+  content  = var.astronomer_helm_values
+  filename = "${path.root}/${var.deployment_id}-config.yaml"
 }
 
 provider "kubernetes" {
