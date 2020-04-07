@@ -204,7 +204,7 @@ By default, a new VPC and subnets will be created. There are options to allow yo
 - private_subnets
 - db_subnets
 
-Make sure that your subnets and VPC are tagged as required by EKS.
+Make sure that your subnets and VPC meet the tagging requirements outlined here: https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html.
 
 By default, a public subnet is created only to allow egress internet traffic. The cluster, database, and load balancer (where the application is accessed) are placed in the private networks by default. Options that can be changed from default that provision resources in the public subnet are enable_bastion and enable_windows_box. The Kubernetes API will be deployed into the public internet by default. This is to enable a one-click solution (deploy network, deploy Kubernetes in that network, deploy application on Kubernetes all in one go). Otherwise you have to deploy the VPC, networks, and Kubernetes, then deploy the rest executing Terraform from inside the VPC. It is best security practice to disable the public Kubernetes API when you are not using it. This can be accomplished using AWS EKS in the AWS console, this can be safely toggled to private in a non-interrupting fashion when Terraform is not being used. If you want to use Terraform again, just re-enable it. To use Terraform completely privately from scratch, you will need to deploy from an existing VPC into the same VPC.
 
