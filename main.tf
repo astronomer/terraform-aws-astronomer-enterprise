@@ -1,6 +1,6 @@
 module "aws" {
   source  = "astronomer/astronomer-aws/aws"
-  version = "1.1.131"
+  version = "1.1.136"
   # source                        = "../terraform-aws-astronomer-aws"
   deployment_id                 = var.deployment_id
   admin_email                   = var.email
@@ -49,7 +49,7 @@ module "system_components" {
   enable_aws_cluster_autoscaler = true
   cluster_name                  = module.aws.cluster_name
   aws_region                    = data.aws_region.current.name
-  tiller_version                = "2.16.1"
+  tiller_version                = "2.16.7"
 }
 
 module "astronomer" {
