@@ -22,7 +22,7 @@ provider "kubernetes" {
 }
 
 provider "helm" {
-  version         = "~> 1.2"
+  version = "~> 1.2"
   kubernetes {
     host                   = module.aws.kube_endpoint
     cluster_ca_certificate = module.aws.kube_ca_certificate
