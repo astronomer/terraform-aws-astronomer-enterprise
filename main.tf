@@ -38,18 +38,15 @@ module "aws" {
 # Get the AWS_REGION used by the aws provider
 data "aws_region" "current" {}
 
-# install tiller, which is the server-side component
-# of Helm, the Kubernetes package manager
 module "system_components" {
   dependencies = [module.aws.depended_on]
   source       = "astronomer/astronomer-system-components/kubernetes"
-  version      = "0.1.3"
+  version      = "0.1.3" # this will need to be bumped
   # source       = "../terraform-kubernetes-astronomer-system-components"
   enable_istio                  = false
   enable_aws_cluster_autoscaler = true
   cluster_name                  = module.aws.cluster_name
   aws_region                    = data.aws_region.current.name
-  tiller_version                = "2.16.7"
 }
 
 module "astronomer" {
