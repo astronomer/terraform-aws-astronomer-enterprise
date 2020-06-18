@@ -56,7 +56,7 @@ module "astronomer" {
   dependencies = [module.system_components.depended_on, module.aws.depended_on]
 
   source  = "astronomer/astronomer/kubernetes"
-  version = "1.1.88"
+  version = "1.1.89"
   # source               = "../terraform-kubernetes-astronomer"
 
   astronomer_version   = var.astronomer_version
@@ -65,7 +65,8 @@ module "astronomer" {
   tls_key              = var.tls_key == "" ? module.aws.tls_key : var.tls_key
 
   # Configuration for the Astronomer platform
-  astronomer_helm_values = local.astronomer_helm_values
+  astronomer_helm_values        = local.astronomer_helm_values
+  install_astronomer_helm_chart = var.install_astronomer_helm_chart
 }
 
 data "aws_lambda_invocation" "elb_name" {
