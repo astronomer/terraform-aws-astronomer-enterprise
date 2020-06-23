@@ -22,10 +22,7 @@ provider "kubernetes" {
 }
 
 provider "helm" {
-  version         = "~> 0.10"
-  service_account = "tiller"
-  namespace       = "kube-system"
-  install_tiller  = false
+  version = "~> 1.2"
   kubernetes {
     host                   = module.aws.kube_endpoint
     cluster_ca_certificate = module.aws.kube_ca_certificate
