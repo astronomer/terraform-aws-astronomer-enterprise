@@ -41,12 +41,13 @@ data "aws_region" "current" {}
 module "system_components" {
   dependencies = [module.aws.depended_on]
   source       = "astronomer/astronomer-system-components/kubernetes"
-  version      = "0.1.3"
+  version      = "0.1.20"
   # source       = "../terraform-kubernetes-astronomer-system-components"
   enable_istio                  = false
   enable_aws_cluster_autoscaler = true
   cluster_name                  = module.aws.cluster_name
   aws_region                    = data.aws_region.current.name
+  enable_tiller                 = false
 }
 
 module "astronomer" {
