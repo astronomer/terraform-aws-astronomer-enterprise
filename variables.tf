@@ -105,7 +105,7 @@ variable "astronomer_version" {
 }
 
 variable "cluster_version" {
-  default = "1.16"
+  default = "1.17"
   type    = string
 }
 
