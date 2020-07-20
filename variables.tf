@@ -153,3 +153,9 @@ variable "install_astronomer_helm_chart" {
   default     = true
   description = "When false, this module skips installing the Astronomer helm chart. This is useful if you want to manage Astronomer outside of Terraform"
 }
+
+variable "private_hosted_zone" {
+  type        = bool
+  default     = false
+  description = "Set to true if you are using a private hosted zone. This allows the private zone to be retrieved."
+}
