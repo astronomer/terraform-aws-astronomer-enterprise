@@ -78,8 +78,9 @@ data "aws_elb" "nginx_lb" {
 }
 
 data "aws_route53_zone" "selected" {
-  count = var.create_record ? 1 : 0
-  name  = "${var.route53_domain}."
+  count        = var.create_record ? 1 : 0
+  name         = "${var.route53_domain}."
+  private_zone = var.private_hosted_zone
 }
 
 resource "aws_route53_record" "astronomer" {
