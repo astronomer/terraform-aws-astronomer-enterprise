@@ -1,6 +1,6 @@
 module "aws" {
   source  = "astronomer/astronomer-aws/aws"
-  version = "1.1.136"
+  version = "1.1.144"
   # source                        = "../terraform-aws-astronomer-aws"
   deployment_id                 = var.deployment_id
   admin_email                   = var.email
@@ -74,7 +74,7 @@ data "aws_lambda_invocation" "elb_name" {
 }
 
 data "aws_elb" "nginx_lb" {
-  name = data.aws_lambda_invocation.elb_name.result_map["Name"]
+  name = jsondecode(data.aws_lambda_invocation.elb_name.result).Name
 }
 
 data "aws_route53_zone" "selected" {
