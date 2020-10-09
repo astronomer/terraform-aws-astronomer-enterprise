@@ -4,7 +4,7 @@ name: terraform-aws-astronomer-enterprise
 steps:
 
 - name: lint
-  image: hashicorp/terraform:light
+  image: hashicorp/terraform:0.12.29
   commands:
     - cp providers.tf.example providers.tf
     - terraform init
