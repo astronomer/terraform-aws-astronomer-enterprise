@@ -3,14 +3,16 @@
 # https://github.com/hashicorp/terraform/issues/2430
 
 resource "local_file" "kubeconfig" {
-  depends_on = [module.aws]
-  content    = module.aws.kubeconfig
-  filename   = "${path.root}/kubeconfig-${var.deployment_id}"
+  depends_on      = [module.aws]
+  content         = module.aws.kubeconfig
+  filename        = "${path.root}/kubeconfig-${var.deployment_id}"
+  file_permission = "0644"
 }
 
 resource "local_file" "astronomer_helm_values" {
-  content  = var.astronomer_helm_values
-  filename = "${path.root}/${var.deployment_id}-config.yaml"
+  content         = var.astronomer_helm_values
+  filename        = "${path.root}/${var.deployment_id}-config.yaml"
+  file_permission = "0644"
 }
 
 provider "kubernetes" {
