@@ -1,13 +1,133 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
-# Use a package of configuration called an orb.
 orbs:
-  # Declare a dependency on the welcome-orb
-  welcome: circleci/welcome-orb@0.4.1
-# Orchestrate or schedule a set of jobs
+  slack: circleci/slack@4.1.3
+jobs:
+  run_pre_commit:
+    docker:
+      - image: quay.io/astronomer/ci-pre-commit:2020-12
+    steps:
+      - checkout
+      - run: terraform init
+      - run: pre-commit run --all-files
+  terraform_lint:
+    docker:
+      - image: quay.io/astronomer/ci-terraform:2020-12
+    steps:
+      - checkout
+      - run: pipeline/lint.sh
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
+
+  terraform_apply:
+    docker:
+      - image: quay.io/astronomer/ci-terraform:2020-12
+    steps:
+      - checkout
+      - run: EXAMPLE=from_scratch pipeline/run_terraform.sh
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
+
+  terraform_destroy:
+    docker:
+      - image: quay.io/astronomer/ci-terraform:2020-12
+    steps:
+      - checkout
+      - run: DESTROY=1 EXAMPLE=from_scratch pipeline/run_terraform.sh
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
+
+  git_tag:
+    docker:
+      - image: quay.io/astronomer/ci-terraform:2020-12
+    steps:
+      - checkout
+      - run: git remote set-url origin "https://astro-astronomer:${GITHUB_TOKEN}@github.com/astronomer/${CIRCLE_PROJECT_REPONAME}.git"
+      - run: git tag 1.2.<< pipeline.number >>
+      - run: git push origin << pipeline.git.branch >> --tags
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
+      - slack/notify:
+          event: pass
+          custom: |
+            {
+              "text": "",
+              "blocks": [
+                {
+                  "type": "header",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Release Successful! :tada:",
+                    "emoji": true
+                  }
+                },
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Project*:\n$CIRCLE_PROJECT_REPONAME"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*When*:\n$(date +'%m/%d/%Y %T')"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Tag*:\n1.2.<< pipeline.number >>"
+                    }
+                  ],
+                  "accessory": {
+                    "type": "image",
+                    "image_url": "https://assets.brandfolder.com/otz5mn-bw4j2w-6jzqo8/original/circle-logo-badge-black.png",
+                    "alt_text": "CircleCI logo"
+                  }
+                },
+                {
+                  "type": "actions",
+                  "elements": [
+                    {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "View Job"
+                      },
+                      "url": "${CIRCLE_BUILD_URL}"
+                    }
+                  ]
+                }
+              ]
+            }
+
 workflows:
-  # Name the workflow "welcome"
-  welcome:
-    # Run the welcome/run job in its own container
+  test:
     jobs:
-      - welcome/run
+      - run_pre_commit
+  terraform_pipeline:
+    jobs:
+      - terraform_lint:
+          context:
+            - slack
+      - terraform_apply:
+          requires:
+            - terraform_lint
+          context:
+            - slack
+      - terraform_destroy:
+          requires:
+            - terraform_apply
+          context:
+            - slack
+      - git_tag:
+          context:
+            - github-repo
+            - slack
+          requires:
+            - terraform_destroy
+          filters:
+            branches:
+              only:
+                - master
