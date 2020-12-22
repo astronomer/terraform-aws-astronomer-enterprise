@@ -20,12 +20,12 @@ Astronomer’s terraform scripts can be used to automate the provisioning of a p
 
 The [Astronomer Enterprise module for AWS](https://registry.terraform.io/modules/astronomer/astronomer-enterprise/aws) can be used to provision the Astronomer platform in your AWS account. The automation deploys the following by default:
 
-* VPC
-* Network
-* Database
-* Kubernetes
-* TLS certificate
-* Astronomer
+- VPC
+- Network
+- Database
+- Kubernetes
+- TLS certificate
+- Astronomer
 
 More detailed information can also be found here:
 https://github.com/astronomer/terraform-aws-astronomer-enterprise
@@ -34,11 +34,11 @@ https://github.com/astronomer/terraform-aws-astronomer-enterprise
 
 Install the necessary tools:
 
-* [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
-* [AWS IAM Authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html)
-* [Terraform](https://www.terraform.io/downloads.html) *Use version 0.12.3 or later*
-* [Helm client](https://github.com/helm/helm#install) *Use version 2, 2.14.1 or later*
-* [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) *Use the version appropriate for your Kubernetes cluster version*
+- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
+- [AWS IAM Authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html)
+- [Terraform](https://www.terraform.io/downloads.html) _Use version 0.12.3 or later_
+- [Helm client](https://github.com/helm/helm#install) _Use version 2, 2.14.1 or later_
+- [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) _Use the version appropriate for your Kubernetes cluster version_
 
 ## Installation
 
@@ -114,12 +114,13 @@ After the Terraform apply is complete in the next step, the platform will be run
 
 ### Run Terraform
 
-* `terraform init`
-* `terraform apply`
+- `terraform init`
+- `terraform apply`
 
 When your run the 'apply' command, be sure to review the output before typing 'yes'. This is critical in the case of using Terraform for upgrades. For an initial deployment, it usually takes 15-30 minutes. It may take a few minutes after the web UI is available for the platform to be ready. When there is an option to log in or sign up, then the platform is ready.
 
 A `kubeconfig` file will be generated in your working directory. Be sure to reference this file when running `kubectl` or `helm` commands. Example:
+
 ```
 export KUBECONFIG=./kubeconfig
 
@@ -134,6 +135,7 @@ The kubeconfig file along with other secrets such as the TLS certificate are bac
 Astronomer is installed on Kubernetes. We are making use of the Kubernetes package manager called 'Helm'. All reconfiguration options that are intended for the Astronomer platform rather than Terraform or infrastructure are passed in YAML and will be referred to as "Helm values". For all reconfigurations, you can make use of the Terraform option astronomer_helm_values, which should be a YAML block in a Terraform string. Creating an Astronomer Helm configuration is documented here: https://www.astronomer.io/docs/ee-configyaml/
 
 For any reconfiguration, make sure that your configuration includes at least the following options:
+
 ```
 global:
   # Replace to match your certificate, less the wildcard.
@@ -146,6 +148,7 @@ nginx:
 ```
 
 For example, your Terraform block that calls the Astronomer Enterprise module might look like this:
+
 ```
 module "astronomer-enterprise" {
   source                  = "astronomer/astronomer-enterprise/aws"
@@ -213,6 +216,7 @@ By default, a public subnet is created only to allow egress internet traffic. Th
 If you want to serve the platform itself publicly, then you need to configure both the infrastructure to allow this (setting up tags on the public subnets to allow the creation of load balancers) and configure the platform to deploy its load balancer into a public subnet. If you are using your own network, see above. If you are using Route 53 + Let's Encrypt automation, then the following configuration alone will work.
 
 Provide these options to the Astronomer enterprise module for public access to be enabled:
+
 ```
   # This configuration serves the platform publicly
   allow_public_load_balancers = true
