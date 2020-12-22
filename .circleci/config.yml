@@ -103,9 +103,9 @@ jobs:
             }
 
 workflows:
-  test:
-    jobs:
-      - run_pre_commit
+  # test:
+  #   jobs:
+  #     - run_pre_commit
   terraform_pipeline:
     jobs:
       - terraform_lint:
