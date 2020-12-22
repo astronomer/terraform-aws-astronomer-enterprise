@@ -44,7 +44,7 @@ module "system_components" {
   version      = "0.1.21"
   # source       = "../terraform-kubernetes-astronomer-system-components"
   enable_istio                  = false
-  enable_aws_cluster_autoscaler = true
+  enable_aws_cluster_autoscaler = false
   cluster_name                  = module.aws.cluster_name
   aws_region                    = data.aws_region.current.name
   enable_tiller                 = false
