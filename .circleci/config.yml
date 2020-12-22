@@ -103,31 +103,31 @@ jobs:
             }
 
 workflows:
-  # test:
-  #   jobs:
-  #     - run_pre_commit
-  terraform_pipeline:
+  test:
     jobs:
-      - terraform_lint:
-          context:
-            - slack
-      - terraform_apply:
-          requires:
-            - terraform_lint
-          context:
-            - slack
-      - terraform_destroy:
-          requires:
-            - terraform_apply
-          context:
-            - slack
-      - git_tag:
-          context:
-            - github-repo
-            - slack
-          requires:
-            - terraform_destroy
-          filters:
-            branches:
-              only:
-                - master
+      - run_pre_commit
+  # terraform_pipeline:
+  #   jobs:
+  #     - terraform_lint:
+  #         context:
+  #           - slack
+  #     - terraform_apply:
+  #         requires:
+  #           - terraform_lint
+  #         context:
+  #           - slack
+  #     - terraform_destroy:
+  #         requires:
+  #           - terraform_apply
+  #         context:
+  #           - slack
+  #     - git_tag:
+  #         context:
+  #           - github-repo
+  #           - slack
+  #         requires:
+  #           - terraform_destroy
+  #         filters:
+  #           branches:
+  #             only:
+  #               - master
