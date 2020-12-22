@@ -187,8 +187,8 @@ By default, a certificate will be generated from LetsEncrypt. Certificates can b
 -----END CERTIFICATE-----
 EOF
   tls_key               = <<EOF
------BEGIN PRIVATE KEY-----
------END PRIVATE KEY-----
+-----BEGIN KEY-----
+-----END KEY-----
 EOF
 }
 }
