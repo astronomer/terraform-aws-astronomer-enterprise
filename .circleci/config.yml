@@ -19,7 +19,7 @@ jobs:
           event: fail
           template: basic_fail_1
 
-  terraform_apply:
+  run_terraform:
     docker:
       - image: quay.io/astronomer/ci-terraform:2020-12
     steps:
@@ -28,13 +28,9 @@ jobs:
       - slack/notify:
           event: fail
           template: basic_fail_1
-
-  terraform_destroy:
-    docker:
-      - image: quay.io/astronomer/ci-terraform:2020-12
-    steps:
-      - checkout
-      - run: DESTROY=1 EXAMPLE=from_scratch pipeline/run_terraform.sh
+      - run:
+          command: DESTROY=1 EXAMPLE=from_scratch pipeline/run_terraform.sh
+          when: always
       - slack/notify:
           event: fail
           template: basic_fail_1
@@ -106,28 +102,23 @@ workflows:
   test:
     jobs:
       - run_pre_commit
-  # terraform_pipeline:
-  #   jobs:
-  #     - terraform_lint:
-  #         context:
-  #           - slack
-  #     - terraform_apply:
-  #         requires:
-  #           - terraform_lint
-  #         context:
-  #           - slack
-  #     - terraform_destroy:
-  #         requires:
-  #           - terraform_apply
-  #         context:
-  #           - slack
-  #     - git_tag:
-  #         context:
-  #           - github-repo
-  #           - slack
-  #         requires:
-  #           - terraform_destroy
-  #         filters:
-  #           branches:
-  #             only:
-  #               - master
+  terraform_pipeline:
+    jobs:
+      - terraform_lint:
+          context:
+            - slack
+      - run_terraform:
+          requires:
+            - terraform_lint
+          context:
+            - slack
+      - git_tag:
+          context:
+            - github-repo
+            - slack
+          requires:
+            - run_terraform
+          filters:
+            branches:
+              only:
+                - master
