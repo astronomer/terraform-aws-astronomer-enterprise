@@ -1,6 +1,6 @@
 module "aws" {
   source  = "astronomer/astronomer-aws/aws"
-  version = "1.1.159"
+  version = "1.2.96"
   # source                        = "../terraform-aws-astronomer-aws"
   deployment_id                 = var.deployment_id
   admin_email                   = var.email
@@ -41,7 +41,7 @@ data "aws_region" "current" {}
 module "system_components" {
   dependencies = [module.aws.depended_on]
   source       = "astronomer/astronomer-system-components/kubernetes"
-  version      = "0.1.21"
+  version      = "0.1.22"
   # source       = "../terraform-kubernetes-astronomer-system-components"
   enable_istio                  = false
   enable_aws_cluster_autoscaler = true
