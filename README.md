@@ -121,7 +121,7 @@ When your run the 'apply' command, be sure to review the output before typing 'y
 
 A `kubeconfig` file will be generated in your working directory. Be sure to reference this file when running `kubectl` or `helm` commands. Example:
 
-```
+```sh
 export KUBECONFIG=./kubeconfig
 
 kubectl get pods -n astronomer
@@ -136,7 +136,7 @@ Astronomer is installed on Kubernetes. We are making use of the Kubernetes packa
 
 For any reconfiguration, make sure that your configuration includes at least the following options:
 
-```
+```yaml
 global:
   # Replace to match your certificate, less the wildcard.
   # If you are using Let's Encrypt + Route 53, then it should be <deployment_id>.<route53_domain>
@@ -149,7 +149,7 @@ nginx:
 
 For example, your Terraform block that calls the Astronomer Enterprise module might look like this:
 
-```
+```terraform
 module "astronomer-enterprise" {
   source                  = "astronomer/astronomer-enterprise/aws"
   # Look up the most recent version in the Terraform Registry
@@ -217,7 +217,7 @@ If you want to serve the platform itself publicly, then you need to configure bo
 
 Provide these options to the Astronomer enterprise module for public access to be enabled:
 
-```
+```yaml
   # This configuration serves the platform publicly
   allow_public_load_balancers = true
   astronomer_helm_values = <<EOF

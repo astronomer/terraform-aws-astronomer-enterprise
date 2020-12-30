@@ -2,7 +2,7 @@
 # shellcheck disable=SC2044
 set -xe
 
-TERRAFORM="${TERRAFORM:-terraform-0.12.29}"
+TERRAFORM="${TERRAFORM:-terraform-0.12}"
 
 $TERRAFORM -v
 
