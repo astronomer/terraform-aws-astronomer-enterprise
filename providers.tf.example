@@ -5,3 +5,15 @@ provider "aws" {
 provider "acme" {
   server_url = "https://acme-v02.api.letsencrypt.org/directory"
 }
+
+terraform {
+  required_providers {
+    acme = {
+      source = "terraform-providers/acme"
+    }
+    aws = {
+      source = "hashicorp/aws"
+    }
+  }
+  required_version = ">= 0.13"
+}
