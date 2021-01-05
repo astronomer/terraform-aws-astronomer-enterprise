@@ -68,3 +68,12 @@ output "windows_debug_box_password" {
 output "windows_debug_box_hostname" {
   value = module.astronomer_aws_from_scratch.windows_debug_box_hostname
 }
+
+terraform {
+  required_providers {
+    acme = {
+      source = "terraform-providers/acme"
+    }
+  }
+  required_version = ">= 0.13"
+}
