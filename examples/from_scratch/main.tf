@@ -74,6 +74,9 @@ terraform {
     acme = {
       source = "terraform-providers/acme"
     }
+    aws = {
+      source = "hashicorp/aws"
+    }
   }
   required_version = ">= 0.13"
 }
