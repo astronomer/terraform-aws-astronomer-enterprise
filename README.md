@@ -2,6 +2,8 @@
 
 Updates are not guaranteed to be non-interrupting. Always use Terraform best-practices when deploying updates by reviewing the Terraform "plan" and understanding the impact before applying.
 
+NOTE: This should only be used for initial bootstrapping. All subsequent changes/updates to the Astronomer Platform should be made using Helm.
+
 # Architecture
 
 - optional bastion
