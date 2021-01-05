@@ -13,5 +13,8 @@ terraform {
     local = {
       source = "hashicorp/local"
     }
+    acme = {
+      source = "terraform-providers/acme"
+    }
   }
 }
