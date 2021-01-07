@@ -38,8 +38,8 @@ Install the necessary tools:
 
 - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
 - [AWS IAM Authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html)
-- [Terraform](https://www.terraform.io/downloads.html) _Use version 0.12.3 or later_
-- [Helm client](https://github.com/helm/helm#install) _Use version 2, 2.14.1 or later_
+- [Terraform](https://www.terraform.io/downloads.html) _Use version 0.13.5 or later_
+- [Helm client](https://github.com/helm/helm#install) _Use version 3, 3.3.4 or later_
 - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) _Use the version appropriate for your Kubernetes cluster version_
 
 ## Installation
@@ -72,7 +72,12 @@ provider "acme" {
 }
 
 terraform {
-  required_version = ">= 0.12"
+  required_version = ">= 0.13"
+  required_providers {
+    acme = {
+      source = "terraform-providers/acme"
+    }
+  }
   backend "s3" {
 	  bucket  = "astronomer-platform"
 	  key	    = "terraform-state"

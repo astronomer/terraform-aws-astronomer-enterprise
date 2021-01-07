@@ -1,7 +1,7 @@
 #!/bin/bash
 set -xe
 
-TERRAFORM="${TERRAFORM:-terraform-0.12}"
+TERRAFORM="${TERRAFORM:-terraform-0.13}"
 
 $TERRAFORM -v
 
