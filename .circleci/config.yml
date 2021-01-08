@@ -73,7 +73,7 @@ jobs:
                     },
                     {
                       "type": "mrkdwn",
-                      "text": "*Tag*:\n1.2.<< pipeline.number >>"
+                      "text": "*Tag*:\n2.0.<< pipeline.number >>"
                     }
                   ],
                   "accessory": {
