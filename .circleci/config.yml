@@ -8,7 +8,7 @@ jobs:
       - image: quay.io/astronomer/ci-pre-commit:2020-12
     steps:
       - checkout
-      - run: pre-commit run --all-files
+      - run: pre-commit run --all-files || git --no-pager diff
   terraform_lint:
     docker:
       - image: quay.io/astronomer/ci-terraform:2020-12
