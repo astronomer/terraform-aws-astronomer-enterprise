@@ -1,6 +1,6 @@
 module "aws" {
   source  = "astronomer/astronomer-aws/aws"
-  version = "2.0.108"
+  version = "2.0.114"
   # source                        = "../terraform-aws-astronomer-aws"
   deployment_id                 = var.deployment_id
   admin_email                   = var.email
