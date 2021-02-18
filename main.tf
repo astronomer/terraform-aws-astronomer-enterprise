@@ -19,6 +19,7 @@ module "aws" {
   cluster_version               = var.cluster_version
   worker_instance_type          = var.worker_instance_type
   db_instance_type              = var.db_instance_type
+  engine_version                = var.db_instance_engine_version
   db_replica_count              = var.db_replica_count
   allow_public_load_balancers   = var.allow_public_load_balancers
   # It makes the installation easier to leave
