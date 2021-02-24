@@ -132,8 +132,8 @@ variable "db_instance_type" {
 }
 
 variable "db_instance_engine_version" {
-  default = "11.9"
-  type = string
+  default     = "11.9"
+  type        = string
   description = "The AWS Aurora RDS PostgreSQL engine version number."
 }
 
