@@ -131,6 +131,12 @@ variable "db_instance_type" {
   type    = string
 }
 
+variable "db_instance_engine_version" {
+  default     = "11.9"
+  type        = string
+  description = "The AWS Aurora RDS PostgreSQL engine version number."
+}
+
 variable "worker_instance_type" {
   default = "m5.xlarge"
   type    = string
