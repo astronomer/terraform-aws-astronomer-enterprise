@@ -1,4 +1,4 @@
-variable deployment_id {}
+variable deployment_id {default = "rahat"}
 
 variable route53_domain {
   default = "astronomer-development.com"

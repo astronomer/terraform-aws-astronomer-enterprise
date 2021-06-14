@@ -2,7 +2,7 @@ terraform {
   required_version = ">= 0.12"
   backend "s3" {
     bucket         = "ci-terraform-state-astronomer"
-    key            = "REPLACE/terraform.tfstate"
+    key            = "rahat/terraform.tfstate"
     region         = "us-east-1"
     encrypt        = true
   }
