@@ -1,6 +1,6 @@
-variable deployment_id {}
+variable "deployment_id" {}
 
-variable route53_domain {
+variable "route53_domain" {
   default = "astronomer-development.com"
 }
 
@@ -8,7 +8,7 @@ variable route53_domain {
 # and network access to the deployment.
 # Useful for debugging.
 # It's unnecessary for most use cases.
-variable enable_windows_box {
+variable "enable_windows_box" {
   default = false
 }
 

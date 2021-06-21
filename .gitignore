@@ -2,6 +2,7 @@
 *.tfstate
 *.tfvars
 *tfstate*
+.terraform.lock.hcl
 config-map*
 helm.astronomer.io
 helm.astronomer.io/*
