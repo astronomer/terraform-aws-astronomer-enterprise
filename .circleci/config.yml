@@ -5,13 +5,13 @@ orbs:
 jobs:
   run_pre_commit:
     docker:
-      - image: quay.io/astronomer/ci-pre-commit:2020-12
+      - image: quay.io/astronomer/ci-pre-commit:2021-06
     steps:
       - checkout
-      - run: pre-commit run --all-files || { git --no-pager diff && false ; }
+      - run: pre-commit run --all-files --show-diff-on-failure
   terraform_lint:
     docker:
-      - image: quay.io/astronomer/ci-terraform:2020-12
+      - image: quay.io/astronomer/ci-terraform:2021-06
     steps:
       - checkout
       - run: pipeline/lint.sh
@@ -21,7 +21,7 @@ jobs:
 
   run_terraform:
     docker:
-      - image: quay.io/astronomer/ci-terraform:2020-12
+      - image: quay.io/astronomer/ci-terraform:2021-06
     steps:
       - checkout
       - run: EXAMPLE=from_scratch pipeline/run_terraform.sh
@@ -37,7 +37,7 @@ jobs:
 
   git_tag:
     docker:
-      - image: quay.io/astronomer/ci-terraform:2020-12
+      - image: quay.io/astronomer/ci-terraform:2021-06
     steps:
       - checkout
       - run: git remote set-url origin "https://astro-astronomer:${GITHUB_TOKEN}@github.com/astronomer/${CIRCLE_PROJECT_REPONAME}.git"
