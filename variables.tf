@@ -44,7 +44,7 @@ variable "private_subnets" {
 
 variable "db_subnets" {
   default     = []
-  type        = list
+  type        = list(any)
   description = "This variable does nothing unless vpc_id is also set. Specify the subnet IDs in which the DB will be deployed. If not provided, it will fall back to private_subnets."
 }
 
@@ -87,7 +87,7 @@ variable "tags" {
 variable "security_groups_to_whitelist_on_eks_api" {
   description = "A list of security group IDs to whitelist on the EKS management security group using security group referencing. For example, if you have a security group assigned to your terraform server, you can add that security group to this list to allow access to the private EKS endpoint from that server."
   default     = []
-  type        = list
+  type        = list(any)
 }
 
 variable "ten_dot_what_cidr" {
